@@ -14,6 +14,7 @@ public:
     Gestiune() ;
     ~Gestiune();
     Gestiune<Ttype>& operator+=(const Ttype& ob);
+    void afisare();
 };
 
 template <class Ttype> int Gestiune<Ttype>::nr_plati = 0;
@@ -35,6 +36,12 @@ Gestiune<Ttype>& Gestiune<Ttype>::operator+=(const Ttype& ob) {
     return *this;
 }
 
+template <class Ttype> void Gestiune<Ttype>::afisare() {
+    for (auto i:plati)
+        cout << i.second << endl;
+
+}
+
 template <> class Gestiune <card> {
       static int nr_clienti;
       static int nr_plati;
@@ -44,6 +51,10 @@ template <> class Gestiune <card> {
         Gestiune();
         ~Gestiune();
         Gestiune<card>& operator+=(const card& ob);
+        void afisare() {
+            for (auto i:plati)
+                cout << i.second << endl;
+        }
 
     };
 
@@ -144,5 +155,12 @@ int main() {
         }
      cout << "Inserati urmatoarea optiune: ";
      cin >> optiune;}
+    cout << "Plati cash\n";
+    A.afisare();
 
+    cout<< "Plati cu card\n";
+    B.afisare();
+
+    cout << "Plati cu cec\n";
+    C.afisare();
 }
